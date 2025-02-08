@@ -1,0 +1,195 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	display: grid;
+	place-content: center;
+	height: 100vh;
+	overflow: hidden;
+	user-select: none;
+	background-color: #222;
+}
+
+main {
+	background-image: url('./assets/iphone.webp');
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 320px;
+	height: 640px;
+	display: flex;
+	filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+}
+
+section {
+	background-color: #f6f6f6;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	overflow: hidden;
+	position: relative;
+	padding: 16px 6px;
+	margin: 24px;
+	border-radius: 32px;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+
+	& img {
+		width: 24px;
+		height: 24px;
+	}
+}
+
+.cards {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+
+	& > span {
+		height: 100%;
+		display: grid;
+		place-content: center;
+		color: #777;
+		font-size: 14px;
+		text-align: center;
+	}
+
+	& article {
+		border-radius: 8px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		cursor: grab;
+		overflow: hidden;
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+
+		&.go-left {
+			transform: translateX(-150%) rotate(-30deg) !important;
+		}
+
+		&.go-right {
+			transform: translateX(150%) rotate(30deg) !important;
+		}
+
+		&.go-left,
+		&.go-right {
+			transition: transform .3s ease, rotate .3s ease;
+		}
+
+		&.reset {
+			transition: transform .3s ease;
+			transform: translateX(0) !important;
+		}
+
+		& .choice {
+			width: fit-content;
+			position: absolute;
+			border: 4px solid;
+			top: 32px;
+			border-radius: 8px;
+			right: 16px;
+			font-size: 24px;
+			font-weight: bold;
+			padding: 4px 8px;
+			opacity: 0;
+			transition: opacity .3s ease;
+
+			&.nope {
+				border-color: #ff766c;
+				color: #ff766c;
+				transform: rotate(30deg);
+			}
+
+			&.like {
+				left: 16px;
+				border-color: #4caf50;
+				color: #4caf50;
+				transform: rotate(-30deg);
+			}
+		}
+
+		& img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		& h2 {
+			color: #fff;
+			position: absolute;
+			inset: 0;
+			display: flex;
+			align-items: flex-end;
+			height: 100%;
+			width: 100%;
+			padding: 16px;
+			background-image: linear-gradient(to top, #00000088 20%, transparent 40%);
+		}
+
+		& span {
+			margin-left: 4px;
+			font-size: 18px;
+			line-height: 1.4;
+			font-weight: 400;
+		}
+	}
+}
+
+footer {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 12px;
+	padding: 0 24px;
+
+	& button {
+    background-image: url('./assets/tinder-icons.webp');
+    background-position: 0px 0px;
+    background-size: 175px;
+		height: 32px;
+		width: 32px;
+		border-radius: 50%;
+		border: 0;
+    cursor: pointer;
+    transition: scale .3s ease;
+
+    &:hover {
+      scale: 1.4;
+    }
+
+    &.is-big {
+      background-size: 250px;
+      width: 48px;
+      height: 48px;
+    }
+
+    &.is-undo {
+      background-position: -140px 0;
+    }
+
+    &.is-remove {
+      background-position: -150px 0;
+    }
+
+    &.is-fav {
+      background-position: -50px 0;
+    }
+
+    &.is-star {
+      background-position: -70px 0;
+    }
+	}
+}
